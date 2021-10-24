@@ -2,7 +2,7 @@ let msg ={
     serverError:{
         code:500,
         error:true,
-        msg:'internal server erros'
+        msg:'Internal Server Error'
     },
     badRequest:{
         code:400,
