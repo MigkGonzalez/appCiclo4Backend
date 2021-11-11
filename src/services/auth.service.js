@@ -4,8 +4,8 @@ const bcrypt = require('bcrypt')
 const msg = require('../helpers/messages')
 
 const authService = {
-    signToken: async (id)=>{
-        return jwt.sign({ id }, process.env.JWT_SECRET, {
+    signToken: async function(_id){
+        return jwt.sign({ _id }, process.env.JWT_SECRET, {
             expiresIn: 60 * 60 * 24 * 365
         })
     },
@@ -16,6 +16,7 @@ const authService = {
             if(await bcrypt.compare(password, userExists.password).then(res=>res)){
                 const token = await this.signToken(userExists.id)
                 return{
+                    user: userExists,
                     code: 200,
                     token
                 }
